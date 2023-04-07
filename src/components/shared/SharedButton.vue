@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import {watchEffect} from "vue";
 
 export default {
   data() {
@@ -27,11 +26,11 @@ export default {
     },
   },
   //todo harc Sonain, chsht em haskacel vor setup@ da nkarchutyan hamara propserov vor poxancum es?
-  setup(){
-    watchEffect(function (){
-      console.log()
-    })
-  },
+  // setup(){
+  //   watchEffect(function (){
+  //     console.log()
+  //   })
+  // },
 
   // watch: {
   //   title(title, cancel){

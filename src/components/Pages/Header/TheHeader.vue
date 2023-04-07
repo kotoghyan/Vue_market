@@ -2,8 +2,9 @@
 <div class="root">
   <div class="container">
     <img class="logo" v-bind:src="logo" alt="Market Logo">
-    <shared-input></shared-input>
-    <shared-button></shared-button>
+    <header-input></header-input>
+    <cart-icon></cart-icon>
+<!--    <shared-button></shared-button>-->
   </div>
 </div>
 </template>
@@ -12,15 +13,16 @@
 
 <script>
 import logo from '@/assets/logo.png'
-import SharedButton from "@/components/shared/SharedButton";
-import SharedInput from "@/components/shared/SharedInput";
+import HeaderInput from "@/components/Pages/Header/HeaderInput/HeaderInput";
+import CartIcon from "@/components/IconComponents/CartIcon";
+
 export default {
   data() {
     return {
       logo,
     }
   },
-  components:{SharedInput, SharedButton},
+  components:{CartIcon, HeaderInput},
   name: "TheHeader"
 }
 </script>
@@ -28,6 +30,7 @@ export default {
 <style scoped>
   .root{
     height: 100px;
+    background-color: #232F3E;
   }
   .container{
     padding: 24px;
@@ -35,6 +38,8 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
   }
   .logo{
     width: fit-content;
