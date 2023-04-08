@@ -28,6 +28,7 @@ export default {
   width: 50%;
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
 }
 
@@ -50,12 +51,12 @@ export default {
   width: 24px;
   height: 24px;
   background: none;
+  cursor: pointer;
 }
 
 .input:focus {
   outline: none;
 }
-
 /*.input::-webkit-outer-spin-button,*/
 /*.input::-webkit-inner-spin-button {*/
 /*  margin: 0;*/
