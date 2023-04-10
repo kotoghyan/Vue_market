@@ -31,8 +31,8 @@ export default {
   padding-left: 16px;
 }
 .input{
-  max-width: 30px;
-  padding: 8px 50px 8px 16px;
+  max-width: 70px;
+  padding: 8px 8px;
   border: 1px solid rgba(0, 0, 0, 1);
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.9);
