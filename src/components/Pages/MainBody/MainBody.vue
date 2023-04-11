@@ -9,31 +9,31 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
 import ItemDraw from "@/components/Pages/MainBody/ItemDraw";
+import {mapGetters} from "vuex/dist/vuex.mjs";
 
 export default {
   components: {ItemDraw},
   computed: {
-    ...mapState(['data']),
-  },
-  methods: {
-    ...mapActions(['fetchData']),
+    ...mapGetters({
+      data: 'main/data'
+    }),
   },
   mounted() {
-    this.fetchData();
+    this.$store.dispatch('main/fetchData')
   },
 };
 </script>
 
 
 <style scoped>
-  .root{
-    padding: 0 24px;
-    flex: 1;
-  }
-  .container{
-    display: flex;
-    flex-wrap: wrap;
-  }
+.root {
+  padding: 0 24px;
+  flex: 1;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
 </style>
