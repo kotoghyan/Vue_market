@@ -9,7 +9,6 @@
 import cart from '../../assets/cart.svg'
 
 export default {
-
   data() {
     return {
       cart,
@@ -20,17 +19,18 @@ export default {
 </script>
 
 <style scoped>
-.root{
+.root {
   height: 60px !important;
   width: 60px;
   padding: 8px;
   background: none;
   border-radius: 4px;
-  border:none;
+  border: none;
   cursor: pointer;
 }
+
 .root:hover {
-  scale:1.1;
+  scale: 1.1;
   border: solid 3px white;
 }
 

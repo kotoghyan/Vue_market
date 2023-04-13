@@ -4,7 +4,6 @@
     <img class="logo" v-bind:src="logo" alt="Market Logo">
     <header-input></header-input>
     <cart-icon></cart-icon>
-<!--    <shared-button></shared-button>-->
   </div>
 </div>
 </template>
@@ -13,7 +12,7 @@
 
 <script>
 import logo from '@/assets/logo.png'
-import HeaderInput from "@/components/Pages/Header/HeaderInput/HeaderInput";
+import HeaderInput from "@/components/Header/HeaderInput/HeaderInput";
 import CartIcon from "@/components/IconComponents/CartIcon";
 
 export default {

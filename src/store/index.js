@@ -4,7 +4,7 @@ import MainBodyModule from "@/store/MainBodyModule";
 
 const index = createStore({
     modules: {
-        main: MainBodyModule
+        main:MainBodyModule,
     }
 
 })

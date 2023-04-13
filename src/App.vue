@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import TheHeader from "@/components/Pages/Header/TheHeader";
-import LeftSideFilter from "@/components/Pages/LeftSideFilter/LeftSideFilter";
-import MainBody from "@/components/Pages/MainBody/MainBody";
+import TheHeader from "@/components/Header/TheHeader";
+import LeftSideFilter from "@/components/LeftSideFilter/LeftSideFilter";
+import MainBody from "@/components/MainBody/MainBody";
 export default {
   name: 'App',
   components: {

@@ -25,7 +25,6 @@ export default {
       return ['root', {cancel:!this.cancel}]
     },
   },
-  //todo harc Sonain, chsht em haskacel vor setup@ da nkarchutyan hamara propserov vor poxancum es?
   // setup(){
   //   watchEffect(function (){
   //     console.log()
