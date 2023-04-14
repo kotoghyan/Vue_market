@@ -5,7 +5,7 @@ export default {
     namespaced: true,
     state: {
         dataList: null,
-        options:null,
+        options: null,
         itemSearch: null
     },
     getters: {
@@ -21,24 +21,25 @@ export default {
             state.options = payload;
         },
         SET_ITEM_SEARCH(state, payload) {
+            console.log(payload)
             state.itemSearch = payload;
         },
     },
     actions: {
-        searchItem({commit}, symbol){
-            axios.get(`https://financialmodelingprep.com/api/v3/profile/${searchSelector(symbol)}?apikey=13b4101a0776a996190f6521a566f207`)
+        searchItem({commit}, symbol) {
+            axios.get(`https://financialmodelingprep.com/api/v3/profile/${searchSelector(symbol)}?apikey=83efd584d942e3923c09ade3025e4da3`)
                 .then(response => {
                     console.log(symbol, 'search Symbol')
                     console.log(response.data, 'search Item')
                     console.log(this.state.main.options, 'search')
-                    commit('SET_ITEM_SEARCH', response.data);
+                    commit('SET_ITEM_SEARCH', {...response.data[0]});
                 })
                 .catch(error => {
                     console.error(error);
                 });
         },
-        optionsFetch({commit}, symbol){
-            axios.get(`https://financialmodelingprep.com/api/v3/profile/${searchSelector(symbol)}?apikey=13b4101a0776a996190f6521a566f207`)
+        optionsFetch({commit}, symbol) {
+            axios.get(`https://financialmodelingprep.com/api/v3/profile/${searchSelector(symbol)}?apikey=83efd584d942e3923c09ade3025e4da3`)
                 .then(response => {
                     commit('SET_DATA', response.data);
                 })
@@ -47,7 +48,7 @@ export default {
                 });
         },
         fetchData({commit}) {
-            axios.get(`https://financialmodelingprep.com/api/v3/profile/${defaultSelector()}?apikey=13b4101a0776a996190f6521a566f207`)
+            axios.get(`https://financialmodelingprep.com/api/v3/profile/${defaultSelector()}?apikey=83efd584d942e3923c09ade3025e4da3`)
                 .then(response => {
                     commit('SET_DATA', response.data);
                     commit('SET_SELECTED_SYMBOL', response.data);
