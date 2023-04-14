@@ -30,7 +30,6 @@ export default {
   },
   watch: {
     selected() {
-      // this.$store.dispatch('main/setSelectedSymbol', this.selected)
       this.$store.dispatch('main/optionsFetch', this.selected)
     },
   },

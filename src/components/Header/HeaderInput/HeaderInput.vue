@@ -1,21 +1,27 @@
 <template>
-<div class="root">
-  <input  class="input" type="text">
-  <button class="icon">
-    <SearchIcon />
-  </button>
-</div>
+  <div class="root">
+    <input class="input" type="text" @keyup.enter="searchCompany" v-model="text">
+    <button class="icon" @click="searchCompany">
+      <SearchIcon/>
+    </button>
+  </div>
 </template>
 
 <script>
-import search from '@/assets/SearchIcon.svg'
 import SearchIcon from "@/components/IconComponents/SearchIcon";
 
 export default {
   components: {SearchIcon},
   data() {
-    return{
-      search,
+    return {
+      text: '',
+    }
+  },
+  methods: {
+    searchCompany(){
+      console.log(this.text)
+      this.$store.dispatch('main/searchItem', this.text.toUpperCase());
+      this.text = ''
     }
   },
   name: "HeaderInput"
@@ -57,6 +63,7 @@ export default {
 .input:focus {
   outline: none;
 }
+
 /*.input::-webkit-outer-spin-button,*/
 /*.input::-webkit-inner-spin-button {*/
 /*  margin: 0;*/

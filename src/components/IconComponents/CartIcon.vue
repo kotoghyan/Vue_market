@@ -4,7 +4,6 @@
   </button>
 </template>
 
-
 <script>
 import cart from '../../assets/cart.svg'
 

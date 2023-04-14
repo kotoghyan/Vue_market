@@ -19,24 +19,11 @@ export default {
       return this.cancel ? this.title = 'buy' : this.title = 'cancel'
     }
   },
-
   computed:{
     buttonParams() {
       return ['root', {cancel:!this.cancel}]
     },
   },
-  // setup(){
-  //   watchEffect(function (){
-  //     console.log()
-  //   })
-  // },
-
-  // watch: {
-  //   title(title, cancel){
-  //     console.log(title)
-  //     cancel ? title = 'buy' : title = 'cancel'
-  //   },
-  // },
   name: "SharedButton"
 }
 </script>

@@ -1,33 +1,38 @@
 <template>
+  <left-side-filter></left-side-filter>
   <div class="stock">
-    <a class="stock-item" v-for="item in data" :key="item.symbol" :href="item.website">
+    <router-link class="stock-item" v-for="item in data" :key="item.symbol" :to="'/companyname/' + item.symbol">
       <item-grid :item="item"></item-grid>
-    </a>
+    </router-link>
   </div>
 </template>
 
 <script>
 
 import ItemGrid from "@/components/MainBody/ItemGrid/ItemGrid";
+import LeftSideFilter from "@/components/LeftSideFilter/LeftSideFilter";
+import {mapGetters} from "vuex";
 
 export default {
-  components: {ItemGrid},
-  // computed: {
-  //   ...mapGetters({
-  //     dataList: 'main/dataList'
-  //   }),
+  components: {ItemGrid,LeftSideFilter},
+
+  // methods: {
+  //   redirectClickHandler(){
+  //     let symbol = this.$route.params
+  //     this.$store.dispatch('main/searchItem',symbol);
+  //   }
   // },
 
   computed: {
-    data() {
-      return this.$store.state.main.dataList;
-      // const selected = null//this.$store.state.main.options;
-      // const dataList = this.$store.state.main.dataList;
-      // return selected ? dataList.filter(el => el.symbol === selected.symbol) : dataList;r
-    }
-  },
-  mounted() {
-    this.$store.dispatch('main/fetchData');
+  ...mapGetters({
+      data: 'main/data'
+    }),
+    // data() {
+    //   return this.$store.state.main.dataList;
+    //   // const selected = null//this.$store.state.main.options;
+    //   // const dataList = this.$store.state.main.dataList;
+    //   // return selected ? dataList.filter(el => el.symbol === selected.symbol) : dataList;r
+    // }
   },
 };
 </script>
