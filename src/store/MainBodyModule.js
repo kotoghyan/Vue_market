@@ -29,9 +29,6 @@ export default {
         searchItem({commit}, symbol) {
             axios.get(`https://financialmodelingprep.com/api/v3/profile/${searchSelector(symbol)}?apikey=83efd584d942e3923c09ade3025e4da3`)
                 .then(response => {
-                    console.log(symbol, 'search Symbol')
-                    console.log(response.data, 'search Item')
-                    console.log(this.state.main.options, 'search')
                     commit('SET_ITEM_SEARCH', {...response.data[0]});
                 })
                 .catch(error => {

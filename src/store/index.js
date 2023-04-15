@@ -1,12 +1,13 @@
 import {createStore} from "vuex";
 import MainBodyModule from "@/store/MainBodyModule";
+import ModalModule from "@/store/ModalModule";
 
 
 const index = createStore({
     modules: {
-        main:MainBodyModule,
+        main: MainBodyModule,
+        modal: ModalModule,
     }
-
 })
 
 

@@ -27,7 +27,6 @@ export default {
     }),
   },
   mounted() {
-    console.log(this.$store.state.main, 'hello');
     let symbol = this.$route.params.symbol
     this.$store.dispatch('main/searchItem', symbol);
   }

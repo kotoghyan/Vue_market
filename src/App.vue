@@ -2,19 +2,20 @@
   <div class="root">
     <the-header></the-header>
     <div class="container">
-      <router-view/>
+      <router-view />
     </div>
+    <cart-modal></cart-modal>
   </div>
 </template>
 
 <script>
 import TheHeader from "@/components/Header/TheHeader";
+import CartModal from "@/components/Modal/CartModal/CartModal";
 
 export default {
   name: 'App',
-  components: {TheHeader},
+  components: {CartModal, TheHeader},
   mounted() {
-    console.log('AAAAAAAAA')
     this.$store.dispatch('main/fetchData');
   },
 }

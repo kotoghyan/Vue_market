@@ -8,23 +8,32 @@
       <span>{{ item.symbol }}</span>
     </h3>
   </div>
-  <div class="stock-item__price"><span>{{ item.price }} {{ item.currency }}</span></div>
+  <div class="stock-item__price">
+    <span>{{ item.price }} {{ item.currency }}</span>
+    <h1 @click="add">+</h1>
+  </div>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
+  computed: {
+    ...mapGetters({
+      condition: 'modal/itemCondition'
+    })
+  },
+  methods: {
+    add() {
+
+    },
+  },
   props: {
     item: {
       type: Object,
       required: true,
     },
   },
-  // dataList(){
-  //   console.log(this.item)
-  //   return{
-  //
-  //   }
-  // }
 }
 </script>
 

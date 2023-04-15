@@ -1,13 +1,13 @@
 <template>
-<div class="root">
-  <div class="container">
-    <router-link to="/">
-    <img class="logo" v-bind:src="logo" alt="Market Logo">
-    </router-link>
-    <header-input></header-input>
-    <cart-icon></cart-icon>
+  <div class="root">
+    <div class="container">
+      <router-link to="/">
+        <img class="logo" v-bind:src="logo" alt="Market Logo">
+      </router-link>
+      <header-input></header-input>
+      <cart-icon></cart-icon>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -21,7 +21,7 @@ export default {
       logo,
     }
   },
-  components:{CartIcon, HeaderInput},
+  components: {CartIcon, HeaderInput},
   name: "TheHeader"
 }
 
@@ -29,24 +29,27 @@ export default {
 </script>
 
 <style scoped>
-  .root{
-    height: 100px;
-    background-color: #232F3E;
-  }
-  .container{
-    padding: 24px;
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .container > a {
-    height: 100%;
-  }
-  .logo{
-    width: fit-content;
-    height: 100%;
-  }
+.root {
+  height: 100px;
+  background-color: #232F3E;
+}
+
+.container {
+  padding: 24px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.container > a {
+  height: 100%;
+}
+
+.logo {
+  width: fit-content;
+  height: 100%;
+}
 </style>
