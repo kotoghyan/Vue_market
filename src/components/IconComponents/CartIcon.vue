@@ -8,6 +8,7 @@
 import cart from '../../assets/cart.svg'
 
 export default {
+
   data() {
     return {
       cart,

@@ -1,23 +1,31 @@
 <template>
-  <div v-if="isOpen" class="root" @click="closeModal"></div>
-  <dialog class="dialog" :open="isOpen">
-    <div>
-      <h1>hello</h1>
-    </div>
+  <div v-if="isOpen" class="root">
+  <dialog class="dialog" open >
+    <button @click="closeModal" >X</button>
+    <item-grid v-for="item in itemList" :key="item.symbol" :item="item" @buttonAction="deleteFromModal"></item-grid>
   </dialog>
+  </div>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+import ItemGrid from "@/components/MainBody/ItemGrid/ItemGrid";
+
 export default {
-  data() {
-    return {
-      isOpen: true
-    }
+  components: {ItemGrid},
+  computed:{
+    ...mapGetters({
+      isOpen:"modal/isOpen",
+      itemList:'modal/modalItemList',
+    })
   },
   methods: {
     closeModal() {
-      this.isOpen = false
-    }
+      this.$store.dispatch('modal/setModal');
+    },
+    deleteFromModal(item){
+      this.$store.dispatch('modal/deleteItem', item);
+    },
   },
   name: "CartModal"
 }
@@ -35,6 +43,10 @@ export default {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
 }
 </style>

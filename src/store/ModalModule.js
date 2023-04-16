@@ -1,37 +1,36 @@
 export default {
     namespaced: true,
     state: {
-        itemCondition: {
-            fromPage:true,
-            fromModal:false,
-        },
+        isOpen:true,
         modalItemList: [],
     },
     getters:{
-        itemCondition: state => state.itemCondition,
+        isOpen: state => state.isOpen,
         modalItemList: state => state.modalItemList,
     },
     mutations: {
-        SET_ITEM(state, payload) {
-            state.modalItemList = payload
+        SET_MODAL(state){
+            state.isOpen = !state.isOpen
         },
-        SET_CONDITION(state) {
-            let page = state.itemCondition.fromPage;
-            let modal = state.itemCondition.fromModal;
-            if(page) {
-                modal = true;
-                page = false;
-            }
-            modal = false;
-            page = true;
-        }
+        SET_ITEM(state, payload) {
+            state.modalItemList.push(payload)
+            console.log(state.modalItemList)
+        },
+        DELETE_ITEM(state, payload) {
+            console.log(payload)
+            state.modalItemList = state.modalItemList.filter(el => el.symbol !== payload.symbol);
+            console.log(state.modalItemList)
+        },
     },
     actions: {
         setItem({commit}, payload){
             commit('SET_ITEM', payload)
         },
-        setCondition({commit}){
-            commit('SET_CONDITION')
+        setModal({commit}){
+            commit('SET_MODAL')
+        },
+        deleteItem({commit}, payload){
+            commit('DELETE_ITEM', payload)
         }
     }
 

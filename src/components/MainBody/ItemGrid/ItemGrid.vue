@@ -1,8 +1,8 @@
 <template>
   <div class="stock-item__info">
-    <div class="stock-item__cover">
+    <router-link class="stock-item__cover" :to="'/companyname/' + item.symbol">
       <img :src="item.image" alt="logo">
-    </div>
+    </router-link>
     <h3 class="stock-item__title">
       {{ item.companyName }}
       <span>{{ item.symbol }}</span>
@@ -10,29 +10,20 @@
   </div>
   <div class="stock-item__price">
     <span>{{ item.price }} {{ item.currency }}</span>
-    <h1 @click="add">+</h1>
+    <button @click="$emit('buttonAction', item)">{{ condition ? `+` : '-' }}</button>
   </div>
 </template>
 
 <script>
-import {mapGetters} from "vuex";
 
 export default {
-  computed: {
-    ...mapGetters({
-      condition: 'modal/itemCondition'
-    })
-  },
-  methods: {
-    add() {
-
-    },
-  },
+  emits:['buttonAction'],
   props: {
     item: {
       type: Object,
       required: true,
     },
+    condition: Boolean,
   },
 }
 </script>
@@ -42,7 +33,10 @@ export default {
   display: flex;
   align-items: center;
 }
-
+.stock-item__price > button{
+  background: none;
+  height: fit-content;
+}
 .stock-item__cover {
   flex: 0 0 30px;
   margin-right: 15px;

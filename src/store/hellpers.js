@@ -7,6 +7,7 @@ export const defaultSelector = () => {
 export const searchSelector = (searchItem) => {
     return selector.find(el => el === searchItem)
 }
+
 // export const searchByName = (obj, text) => {
 //     return obj.filter(el => el.name.includes(text));
 // }

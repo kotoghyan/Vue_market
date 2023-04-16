@@ -1,10 +1,10 @@
 import axios from "axios";
-import {defaultSelector, searchSelector} from "@/store/apiRequestSerch";
+import {defaultSelector, searchSelector} from "@/store/hellpers";
 
 export default {
     namespaced: true,
     state: {
-        dataList: null,
+        dataList: [],
         options: null,
         itemSearch: null
     },
@@ -21,13 +21,12 @@ export default {
             state.options = payload;
         },
         SET_ITEM_SEARCH(state, payload) {
-            console.log(payload)
             state.itemSearch = payload;
         },
     },
     actions: {
         searchItem({commit}, symbol) {
-            axios.get(`https://financialmodelingprep.com/api/v3/profile/${searchSelector(symbol)}?apikey=83efd584d942e3923c09ade3025e4da3`)
+            axios.get(`https://financialmodelingprep.com/api/v3/profile/${searchSelector(symbol)}?apikey=c885b15df56dafb35cc6e49ccd5538a1`)
                 .then(response => {
                     commit('SET_ITEM_SEARCH', {...response.data[0]});
                 })
@@ -36,7 +35,7 @@ export default {
                 });
         },
         optionsFetch({commit}, symbol) {
-            axios.get(`https://financialmodelingprep.com/api/v3/profile/${searchSelector(symbol)}?apikey=83efd584d942e3923c09ade3025e4da3`)
+            axios.get(`https://financialmodelingprep.com/api/v3/profile/${searchSelector(symbol)}?apikey=c885b15df56dafb35cc6e49ccd5538a1`)
                 .then(response => {
                     commit('SET_DATA', response.data);
                 })
@@ -45,7 +44,7 @@ export default {
                 });
         },
         fetchData({commit}) {
-            axios.get(`https://financialmodelingprep.com/api/v3/profile/${defaultSelector()}?apikey=83efd584d942e3923c09ade3025e4da3`)
+            axios.get(`https://financialmodelingprep.com/api/v3/profile/${defaultSelector()}?apikey=c885b15df56dafb35cc6e49ccd5538a1`)
                 .then(response => {
                     commit('SET_DATA', response.data);
                     commit('SET_SELECTED_SYMBOL', response.data);
@@ -54,6 +53,5 @@ export default {
                     console.error(error);
                 });
         },
-
     },
 }

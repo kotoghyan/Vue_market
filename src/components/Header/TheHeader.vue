@@ -4,8 +4,8 @@
       <router-link to="/">
         <img class="logo" v-bind:src="logo" alt="Market Logo">
       </router-link>
-      <header-input></header-input>
-      <cart-icon></cart-icon>
+      <header-input ></header-input>
+      <cart-icon @click="showModal" ></cart-icon>
     </div>
   </div>
 </template>
@@ -21,6 +21,12 @@ export default {
       logo,
     }
   },
+  methods:{
+    showModal(){
+      this.$store.dispatch('modal/setModal');
+    }
+  },
+
   components: {CartIcon, HeaderInput},
   name: "TheHeader"
 }
