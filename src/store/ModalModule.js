@@ -17,7 +17,6 @@ export default {
             console.log(state.modalItemList)
         },
         DELETE_ITEM(state, payload) {
-            console.log(payload)
             state.modalItemList = state.modalItemList.filter(el => el.symbol !== payload.symbol);
             console.log(state.modalItemList)
         },

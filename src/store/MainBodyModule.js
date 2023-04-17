@@ -16,19 +16,19 @@ export default {
     mutations: {
         SET_DATA(state, payload) {
             state.dataList = payload;
+            console.log(state)
         },
         SET_SELECTED_SYMBOL(state, payload) {
             state.options = payload;
         },
         SET_ITEM_SEARCH(state, payload) {
             state.itemSearch = payload;
-            console.log(state, ' setitem serch')
         },
     },
     actions: {
         searchItem({commit}, symbol) {
             console.log(symbol, 'symbol');
-            axios.get(`https://financialmodelingprep.com/api/v3/profile/${searchSelector(symbol)}?apikey=c885b15df56dafb35cc6e49ccd5538a1`)
+            axios.get(`https://financialmodelingprep.com/api/v3/profile/${searchSelector(symbol)}?apikey=13b4101a0776a996190f6521a566f207`)
                 .then(response => {
                     commit('SET_ITEM_SEARCH', {...response.data[0]});
 
@@ -38,7 +38,7 @@ export default {
                 });
         },
         optionsFetch({commit}, symbol) {
-            axios.get(`https://financialmodelingprep.com/api/v3/profile/${searchSelector(symbol)}?apikey=c885b15df56dafb35cc6e49ccd5538a1`)
+            axios.get(`https://financialmodelingprep.com/api/v3/profile/${searchSelector(symbol)}?apikey=13b4101a0776a996190f6521a566f207`)
                 .then(response => {
                     commit('SET_DATA', response.data);
                 })
@@ -47,7 +47,7 @@ export default {
                 });
         },
         fetchData({commit}) {
-            axios.get(`https://financialmodelingprep.com/api/v3/profile/${defaultSelector()}?apikey=c885b15df56dafb35cc6e49ccd5538a1`)
+            axios.get(`https://financialmodelingprep.com/api/v3/profile/${defaultSelector()}?apikey=13b4101a0776a996190f6521a566f207`)
                 .then(response => {
                     commit('SET_DATA', response.data);
                     commit('SET_SELECTED_SYMBOL', response.data);
