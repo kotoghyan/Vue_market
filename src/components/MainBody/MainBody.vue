@@ -25,6 +25,7 @@ export default {
       this.$store.dispatch('modal/setItem', item);
     }
   },
+
   mounted() {
     this.$store.dispatch('main/fetchData');
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="root">
     <div class="container">
-      <router-link to="/">
+      <router-link @cllick="drawGrid" to="/">
         <img class="logo" v-bind:src="logo" alt="Market Logo">
       </router-link>
       <header-input ></header-input>
@@ -24,6 +24,9 @@ export default {
   methods:{
     showModal(){
       this.$store.dispatch('modal/setModal');
+    },
+    drawGrid(){
+      this.$store.dispatch('main/fetchData');
     }
   },
 
