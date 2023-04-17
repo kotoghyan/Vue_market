@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     searchCompany(){
-      this.$store.dispatch('main/optionsFetch', {symbol:this.text.toUpperCase()});
+      this.$store.dispatch('main/optionsFetch', this.text.toUpperCase());
       this.text = ''
     }
   },

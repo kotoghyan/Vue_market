@@ -38,7 +38,7 @@ export default {
                 });
         },
         optionsFetch({commit}, symbol) {
-            axios.get(`https://financialmodelingprep.com/api/v3/profile/${searchSelector(symbol.symbol)}?apikey=c885b15df56dafb35cc6e49ccd5538a1`)
+            axios.get(`https://financialmodelingprep.com/api/v3/profile/${searchSelector(symbol)}?apikey=c885b15df56dafb35cc6e49ccd5538a1`)
                 .then(response => {
                     commit('SET_DATA', response.data);
                 })
