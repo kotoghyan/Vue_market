@@ -16,44 +16,18 @@ export default {
   components: {ItemGrid, LeftSideFilter},
   computed: {
     ...mapGetters({
-      data: 'main/data',
+      data: 'main/dataList',
       condition: 'modal/modalItemList'
     }),
-    // setCondition(item, cond = true){
-    //   if (item) {
-    //     cond = this.$store.state.modal.modalItemList.find(el => {
-    //       if (el.item.symbol === item.symbol) {
-    //         return el.itemCondition.fromPage
-    //       }
-    //     })
-    //     return  cond.itemCondition.fromPage
-    //   }
-    //  return cond
-    // }
   },
   methods: {
     addItemToModal(item) {
       this.$store.dispatch('modal/setItem', item);
     }
   },
-  watch: {
-
-  },
-  // updated() {
-  //   console.log(this.$store.state.modal.modalItemList);
-  // }
-  // methods: {
-  //   redirectClickHandler(){
-  //     let symbol = this.$route.params
-  //     this.$store.dispatch('main/searchItem',symbol);
-  //   }
-  // },
-  // data() {
-  //   return this.$store.state.main.dataList;
-  //   // const selected = null//this.$store.state.main.options;
-  //   // const dataList = this.$store.state.main.dataList;
-  //   // return selected ? dataList.filter(el => el.symbol === selected.symbol) : dataList;r
-  // }
+  mounted() {
+    this.$store.dispatch('main/fetchData');
+  }
 };
 </script>
 
@@ -68,10 +42,8 @@ export default {
 }
 
 .stock-item {
-  width: 310px;
-  height: 90px;
-  color: inherit;
-  text-decoration: inherit;
+  width: 400px;
+  height: 100px;
   border: 1px solid #ccc;
   border-radius: 24px;
   display: flex;

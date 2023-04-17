@@ -1,16 +1,16 @@
 <template>
-  <div class="stock-item__info">
-    <router-link class="stock-item__cover" :to="'/companyname/' + item.symbol">
+  <router-link class="stock-item__info" :to="'/companyname/' + item.symbol">
+    <div class="stock-item__cover" >
       <img :src="item.image" alt="logo">
-    </router-link>
+    </div>
     <h3 class="stock-item__title">
       {{ item.companyName }}
       <span>{{ item.symbol }}</span>
     </h3>
-  </div>
+  </router-link>
   <div class="stock-item__price">
     <span>{{ item.price }} {{ item.currency }}</span>
-    <button @click="$emit('buttonAction', item)">{{ condition ? `+` : '-' }}</button>
+    <h1 class="button" @click="$emit('buttonAction', item)">{{ condition ? `+` : '-' }}</h1>
   </div>
 </template>
 
@@ -32,6 +32,8 @@ export default {
 .stock-item__info {
   display: flex;
   align-items: center;
+  color: inherit;
+  text-decoration: inherit;
 }
 .stock-item__price > button{
   background: none;
@@ -47,6 +49,7 @@ export default {
 }
 
 .stock-item__title {
+  flex:1;
   font-size: 16px;
   margin-top: 0;
   margin-bottom: 0;
@@ -62,9 +65,15 @@ export default {
 }
 
 .stock-item__price {
-  /*flex: 0 0 80px;*/
+  display: flex;
+  flex-direction: column;
+  align-items: end;
   width: 100%;
   text-align: right;
+  white-space: nowrap;
+}
+.button {
+  cursor: pointer;
 }
 
 </style>
