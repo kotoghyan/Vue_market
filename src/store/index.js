@@ -1,6 +1,6 @@
 import {createStore} from "vuex";
-import MainBodyModule from "@/store/MainBodyModule";
-import ModalModule from "@/store/ModalModule";
+import MainBodyModule from "@/store/modules/MainBodyModule";
+import ModalModule from "@/store/modules/ModalModule";
 
 
 const index = createStore({
@@ -9,6 +9,5 @@ const index = createStore({
         modal: ModalModule,
     }
 })
-
 
 export default index

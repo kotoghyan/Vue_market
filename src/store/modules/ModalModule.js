@@ -1,15 +1,15 @@
 export default {
     namespaced: true,
     state: {
-        isOpen:false,
+        isOpen: false,
         modalItemList: [],
     },
-    getters:{
+    getters: {
         isOpen: state => state.isOpen,
         modalItemList: state => state.modalItemList,
     },
     mutations: {
-        SET_MODAL(state){
+        SET_MODAL(state) {
             state.isOpen = !state.isOpen
         },
         SET_ITEM(state, payload) {
@@ -18,20 +18,17 @@ export default {
         },
         DELETE_ITEM(state, payload) {
             state.modalItemList = state.modalItemList.filter(el => el.symbol !== payload.symbol);
-            console.log(state.modalItemList)
         },
     },
     actions: {
-        setItem({commit}, payload){
+        setItem({commit}, payload) {
             commit('SET_ITEM', payload)
         },
-        setModal({commit}){
+        setModal({commit}) {
             commit('SET_MODAL')
         },
-        deleteItem({commit}, payload){
+        deleteItem({commit}, payload) {
             commit('DELETE_ITEM', payload)
         }
     }
-
-
 }
