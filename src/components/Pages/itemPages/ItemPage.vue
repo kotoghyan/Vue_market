@@ -21,14 +21,16 @@ import {mapGetters} from "vuex";
 
 export default {
   name: "ItemPage",
-  computed: {
-    ...mapGetters({
-      data: 'main/itemSearch'
-    }),
-  },
+
+    computed: {
+      ...mapGetters({
+        data: 'main/itemSearch'
+      }),
+    },
   mounted() {
     let symbol = this.$route.params.symbol
     this.$store.dispatch('main/searchItem', symbol);
+    // console.log(this.$store.state.main.itemSearch)
   }
 }
 </script>
@@ -41,12 +43,20 @@ export default {
 }
 
 .companyLogo {
-  padding: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 10px;
+  width: 250px;
+  height: 300px;
   background-color: rgba(147, 147, 147, 0.10);
-  border:solid 1px rgba(101, 98, 98, 0.1);
+  border: solid 1px rgba(101, 98, 98, 0.1);
   filter: drop-shadow(20px 10px 35px black);
   border-radius: 20px;
   box-sizing: border-box;
+}
+.companyLogo > img{
+  width: 100%;
 }
 
 .container {

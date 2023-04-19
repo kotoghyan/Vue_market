@@ -1,5 +1,5 @@
 <template>
-  <router-link class="stock-item__info" :to="'/companyname/' + item.symbol">
+  <router-link class="stock-item__info" :to="'/companyname/' + item.symbol" >
     <div class="stock-item__cover" >
       <img :src="item.image" alt="logo">
     </div>
@@ -25,6 +25,12 @@ export default {
     },
     condition: Boolean,
   },
+  // methods:{
+  //   a(symbol){
+  //     // let symbol = this.$route.params.symbol
+  //     this.$store.dispatch('main/searchItem', symbol);
+  //   },
+  // }
 }
 </script>
 

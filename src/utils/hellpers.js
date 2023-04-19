@@ -5,5 +5,5 @@ export const defaultSelector = () => {
 }
 
 export const searchSelector = (searchItem) => {
-    return selector.find(el => el === searchItem)
+    return selector.find(el => el === searchItem.symbol)
 }

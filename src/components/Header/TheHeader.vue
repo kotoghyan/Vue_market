@@ -5,6 +5,7 @@
         <img class="logo" v-bind:src="logo" alt="Market Logo">
       </router-link>
       <header-input ></header-input>
+      <v-btn @click="isOpen">ADD</v-btn>
       <cart-icon @click="showModal" ></cart-icon>
     </div>
   </div>
@@ -22,6 +23,9 @@ export default {
     }
   },
   methods:{
+    isOpen(){
+      this.$store.dispatch('newItem/setIsOpen');
+    },
     showModal(){
       this.$store.dispatch('modal/setModal');
     },

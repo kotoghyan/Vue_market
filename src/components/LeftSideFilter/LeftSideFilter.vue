@@ -1,7 +1,7 @@
 <template>
   <div class="root">
     <h1>Filter</h1>
-    <select v-model="selected">
+    <select class="options" v-model="selected">
       <option value="" disabled>Select Company</option>
       <option v-for="item in data"
               :key="item.symbol"
@@ -14,7 +14,7 @@
 
 <script>
 
-import {mapActions, mapGetters} from "vuex";
+import {mapGetters} from "vuex";
 
 
 export default {
@@ -25,12 +25,12 @@ export default {
 
     }
   },
-  methods: {
-    ...mapActions(['main/fetchData'])
-  },
+  // methods: {
+  //   ...mapActions(['main/fetchData'])
+  // },
   watch: {
     selected() {
-      this.$store.dispatch('main/optionsFetch', this.selected.symbol)
+      this.$store.dispatch('main/optionsFetch', this.selected)
     },
   },
   computed: {
@@ -49,5 +49,8 @@ export default {
 
 .root > h1 {
   text-align: center;
+}
+.options{
+  border: solid 1px black;
 }
 </style>

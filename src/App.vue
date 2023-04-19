@@ -5,19 +5,18 @@
       <router-view />
     </div>
     <cart-modal></cart-modal>
+    <create-new-item-modal></create-new-item-modal>
   </div>
 </template>
 
 <script>
 import TheHeader from "@/components/Header/TheHeader";
 import CartModal from "@/components/Modal/CartModal/CartModal";
+import CreateNewItemModal from "@/components/Modal/CreateNewItemModal/CreateNewItemModal";
 
 export default {
   name: 'App',
-  components: {CartModal, TheHeader},
-  mounted() {
-    this.$store.dispatch('main/fetchData');
-  },
+  components: {CreateNewItemModal, CartModal, TheHeader},
 }
 </script>
 

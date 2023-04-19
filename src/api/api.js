@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {defaultSelector, searchSelector} from "@/utils/hellpers";
 
-const apikey = '13b4101a0776a996190f6521a566f207';
+const apikey = 'c885b15df56dafb35cc6e49ccd5538a1';
 const baseURL = 'https://financialmodelingprep.com/api/v3';
 
 const instance = axios.create({

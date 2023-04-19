@@ -14,7 +14,6 @@ export default {
         },
         SET_ITEM(state, payload) {
             state.modalItemList.push(payload)
-            console.log(state.modalItemList)
         },
         DELETE_ITEM(state, payload) {
             state.modalItemList = state.modalItemList.filter(el => el.symbol !== payload.symbol);

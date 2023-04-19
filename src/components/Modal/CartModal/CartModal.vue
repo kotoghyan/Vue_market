@@ -1,7 +1,7 @@
 <template>
   <div v-if="isOpen" class="root">
   <dialog class="dialog" open >
-    <button class="button" @click="closeModal">X</button>
+    <v-btn class="button" @click="closeModal">X</v-btn>
     <div class="stock-item" v-for="item in itemList" :key="item.symbol">
       <item-grid :item="item" @buttonAction="deleteFromModal"></item-grid>
     </div>
