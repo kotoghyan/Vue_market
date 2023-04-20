@@ -16,6 +16,7 @@ export default {
     },
     mutations: {
         SET_DATA(state, payload) {
+            console.log(state, 'state')
             state.dataList = payload;
         },
         SET_SELECTED_SYMBOL(state, payload) {
@@ -48,11 +49,17 @@ export default {
                 console.log(response.code);
             }
         },
+
         async optionsFetch({commit}, symbol) {
             const response = await setApiData.setOptions(symbol)
             if (response.status < 400) {
-                console.log(1)
-                commit('SET_DATA', response.data);
+                const find = JSON.parse(localStorage.getItem(`options`)).find(el => el.symbol === symbol.symbol);
+                if (find) {
+                    console.log(response.data)
+                    commit('SET_DATA', [find]);
+                } else {
+                    commit('SET_DATA', response.data);
+                }
             } else {
                 console.log(response.code);
             }
