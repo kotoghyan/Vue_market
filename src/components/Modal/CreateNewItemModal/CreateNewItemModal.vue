@@ -4,7 +4,7 @@
       <v-container class="bg-white">
         <v-col>
           <v-text-field
-              v-model="obj.companyName" label="Company name"  :rules="namesRules" required
+              v-model="obj.companyName" label="Company name" :rules="namesRules" required
           ></v-text-field>
         </v-col>
         <v-col>
@@ -18,9 +18,9 @@
           ></v-text-field>
         </v-col>
         <v-col>
-          <v-file-input :show-size="1024" label="File input" variant="solo" @change="onFileChange" ></v-file-input>
+          <v-file-input :show-size="1024" label="File input" variant="solo" @change="onFileChange"></v-file-input>
         </v-col>
-        <v-btn color="primary" inline @click="this.$store.dispatch('newItem/setIsOpen')">Close</v-btn>
+        <v-btn color="primary text-color" inline @click="this.$store.dispatch('newItem/setIsOpen')">Close</v-btn>
         <v-btn color="primary" inline @click="addItem">ADD</v-btn>
       </v-container>
     </v-dialog>
@@ -33,27 +33,27 @@ import {mapGetters} from "vuex";
 export default {
   data() {
     return {
-      name:'',
+      name: '',
       obj: {
         companyName: '',
         symbol: ''.toUpperCase(),
         price: null,
-        image:'',
+        image: '',
       },
       namesRules: [
-      value => {
-        if (value) return true
-        return 'Name is requred.'
-      }],
+        value => {
+          if (value) return true
+          return 'Name is requred.'
+        }],
     }
   },
 
   methods: {
-    addItem(){
-      let {companyName,symbol,price, image} = this.obj;
+    addItem() {
+      let {companyName, symbol, price, image} = this.obj;
       this.obj.symbol = this.obj.symbol.toUpperCase();
       if (companyName && symbol && price && image) {
-        this.$store.dispatch('main/setNewItem', this.obj );
+        this.$store.dispatch('main/setNewItem', this.obj);
         this.$store.dispatch('newItem/setIsOpen');
         // this.$store.dispatch('main/searchItem', symbol );
       } else {
@@ -62,7 +62,7 @@ export default {
       this.resetState()
 
     },
-    resetState(){
+    resetState() {
       this.obj.companyName = '';
       this.obj.symbol = '';
       this.obj.price = null;
@@ -75,13 +75,13 @@ export default {
       }
       this.createImage(files[0])
     },
-     createImage(file) {
+    createImage(file) {
       let reader = new FileReader()
 
-      reader.onload =  (event) => {
+      reader.onload = (event) => {
         this.obj.image = event.target.result
       }
-       reader.readAsDataURL(file)
+      reader.readAsDataURL(file)
     },
   },
 
