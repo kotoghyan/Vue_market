@@ -10,10 +10,14 @@ export default {
     },
     mutations: {
         SET_MODAL(state) {
-            state.isOpen = !state.isOpen
+            state.isOpen = !state.isOpen;
         },
         SET_ITEM(state, payload) {
-            state.modalItemList.push(payload)
+            if (payload.length > 0) {
+                state.modalItemList = payload;
+            } else {
+                state.modalItemList.push(payload);
+            }
         },
         DELETE_ITEM(state, payload) {
             state.modalItemList = state.modalItemList.filter(el => el.symbol !== payload.symbol);
@@ -21,13 +25,22 @@ export default {
     },
     actions: {
         setItem({commit}, payload) {
-            commit('SET_ITEM', payload)
+            let state = this.state.modal.modalItemList;
+            commit('SET_ITEM', payload);
+            localStorage.removeItem('modalList');
+            localStorage.setItem('modalList', JSON.stringify(state));
         },
         setModal({commit}) {
-            commit('SET_MODAL')
+            const items = JSON.parse(localStorage.getItem(`modalList`));
+            if (items) {
+                commit('SET_ITEM', items);
+            }
+            commit('SET_MODAL');
         },
         deleteItem({commit}, payload) {
-            commit('DELETE_ITEM', payload)
+            let state = this.state.modal.modalItemList;
+            localStorage.setItem('modalList', JSON.stringify(state));
+            commit('DELETE_ITEM', payload);
         }
     }
 }

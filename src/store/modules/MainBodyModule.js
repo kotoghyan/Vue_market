@@ -16,7 +16,6 @@ export default {
     },
     mutations: {
         SET_DATA(state, payload) {
-            console.log(state, 'state')
             state.dataList = payload;
         },
         SET_SELECTED_SYMBOL(state, payload) {
@@ -28,7 +27,6 @@ export default {
         SET_NEW_ITEM(state, payload) {
             state.dataList.push(payload)
             removeSaveOptAndDataInStorage(state)
-            console.log(state)
         }
     },
     actions: {
@@ -38,13 +36,13 @@ export default {
         async searchItem({commit}, symbol) {
             const response = await setApiData.setSearchItem({symbol: symbol});
             if (response.status < 400) {
-                const findFromStorage = JSON.parse(localStorage.getItem(`options`)).find(el => el.symbol === symbol)
+                const findFromStorage = JSON.parse(localStorage.getItem(`options`))
                 if (findFromStorage){
-                    commit('SET_ITEM_SEARCH', findFromStorage);
+                    let item = findFromStorage.find(el => el.symbol === symbol)
+                    commit('SET_ITEM_SEARCH', item);
                 }else {
                     commit('SET_ITEM_SEARCH', {...response.data[0]});
                 }
-
             } else {
                 console.log(response.code);
             }
@@ -53,10 +51,10 @@ export default {
         async optionsFetch({commit}, symbol) {
             const response = await setApiData.setOptions(symbol)
             if (response.status < 400) {
-                const find = JSON.parse(localStorage.getItem(`options`)).find(el => el.symbol === symbol.symbol);
+                const find = JSON.parse(localStorage.getItem(`options`));
                 if (find) {
-                    console.log(response.data)
-                    commit('SET_DATA', [find]);
+                    let item = find.find(el => el.symbol === symbol.symbol);
+                    commit('SET_DATA', [item]);
                 } else {
                     commit('SET_DATA', response.data);
                 }
@@ -67,14 +65,14 @@ export default {
         async fetchData({commit}) {
             const response = await setApiData.setDefaultData()
             if (response.status < 400) {
-                if (JSON.parse(localStorage.getItem('dataList')) || JSON.parse(localStorage.getItem('options'))) {
+                if (JSON.parse(localStorage.getItem('dataList')) && JSON.parse(localStorage.getItem('options'))) {
+                    console.log(1)
                     commit('SET_DATA', response.data.concat(filterStateForLocalStorage('dataList', response)));
                     commit('SET_SELECTED_SYMBOL', response.data.concat(filterStateForLocalStorage('options', response)));
                 } else {
                     commit('SET_DATA', response.data)
                     commit('SET_SELECTED_SYMBOL', response.data)
                 }
-
             } else {
                 console.log(response.code);
             }
