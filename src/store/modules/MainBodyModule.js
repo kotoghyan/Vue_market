@@ -1,6 +1,6 @@
 import {setApiData} from "@/api/api";
 import {defaultData} from "@/defaultData/defaultData";
-import {filterStateForLocalStorage, removeSaveOptAndDataInStorage} from "@/utils/hellpers";
+import {filterStateForLocalStorage, getItemFromLocalsStorage, removeSaveOptAndDataInStorage} from "@/utils/hellpers";
 
 export default {
     namespaced: true,
@@ -36,7 +36,7 @@ export default {
         async searchItem({commit}, symbol) {
             const response = await setApiData.setSearchItem({symbol: symbol});
             if (response.status < 400) {
-                const findFromStorage = JSON.parse(localStorage.getItem(`options`))
+                const findFromStorage = getItemFromLocalsStorage(`options`);
                 if (findFromStorage){
                     let item = findFromStorage.find(el => el.symbol === symbol)
                     commit('SET_ITEM_SEARCH', item);
@@ -51,11 +51,13 @@ export default {
         async optionsFetch({commit}, symbol) {
             const response = await setApiData.setOptions(symbol)
             if (response.status < 400) {
-                const find = JSON.parse(localStorage.getItem(`options`));
+                const find = getItemFromLocalsStorage(`options`);
                 if (find) {
                     let item = find.find(el => el.symbol === symbol.symbol);
+                    console.log(2)
                     commit('SET_DATA', [item]);
                 } else {
+                    console.log(1)
                     commit('SET_DATA', response.data);
                 }
             } else {
@@ -65,8 +67,7 @@ export default {
         async fetchData({commit}) {
             const response = await setApiData.setDefaultData()
             if (response.status < 400) {
-                if (JSON.parse(localStorage.getItem('dataList')) && JSON.parse(localStorage.getItem('options'))) {
-                    console.log(1)
+                if (getItemFromLocalsStorage('dataList') && getItemFromLocalsStorage('options')) {
                     commit('SET_DATA', response.data.concat(filterStateForLocalStorage('dataList', response)));
                     commit('SET_SELECTED_SYMBOL', response.data.concat(filterStateForLocalStorage('options', response)));
                 } else {

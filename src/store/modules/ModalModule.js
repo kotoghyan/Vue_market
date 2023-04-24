@@ -1,3 +1,5 @@
+import {getItemFromLocalsStorage, removeItemFromLocalStorage, setItemToLocalStorage} from "@/utils/hellpers";
+
 export default {
     namespaced: true,
     state: {
@@ -27,20 +29,20 @@ export default {
         setItem({commit}, payload) {
             let state = this.state.modal.modalItemList;
             commit('SET_ITEM', payload);
-            localStorage.removeItem('modalList');
-            localStorage.setItem('modalList', JSON.stringify(state));
+            removeItemFromLocalStorage('modalList');
+            setItemToLocalStorage('modalList', state)
         },
         setModal({commit}) {
-            const items = JSON.parse(localStorage.getItem(`modalList`));
+            const items = getItemFromLocalsStorage(`modalList`);
             if (items) {
                 commit('SET_ITEM', items);
             }
             commit('SET_MODAL');
         },
         deleteItem({commit}, payload) {
-            let state = this.state.modal.modalItemList;
-            localStorage.setItem('modalList', JSON.stringify(state));
             commit('DELETE_ITEM', payload);
+            let state = this.state.modal.modalItemList;
+            setItemToLocalStorage('modalList', state)
         }
     }
 }
